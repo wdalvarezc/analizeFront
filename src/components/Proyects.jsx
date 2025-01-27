@@ -42,7 +42,7 @@ export default function Proyect() {
         >
 
 
-            {proyects.map((card, index) => (
+            {proyects?.map((card, index) => (
 
                 <Card>
                     <CardActionArea

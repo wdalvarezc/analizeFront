@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import Box from '@mui/material/Box';
 import { Button } from '@mui/material';
 import { useDispatch } from "react-redux";
-import SendIcon from '@mui/icons-material/Add';
 import { fetchData, fetchTask, fetchTeams, fetchUsers } from "../redux/actions";
 import { Link } from "react-router-dom";
 
@@ -16,7 +15,7 @@ export default function Inicio() {
         dispatch(fetchTask())
         dispatch(fetchTeams())
         dispatch(fetchUsers())
-    }, [dispatch])
+    }, [])
 
     return (
 
