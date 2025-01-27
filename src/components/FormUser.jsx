@@ -53,7 +53,7 @@ export default function FormUser() {
                 text: "Usuario Creado",
                 icon: "success",
                 confirmButtonText: "Aceptar",
-            }).then(() => navigate('/'));
+            }).then(() => navigate('/analizeFront/'));
 
 
             // Reinicia los datos del formulario

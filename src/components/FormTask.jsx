@@ -59,7 +59,7 @@ export default function FormTask() {
                 text: "Formulario enviado con éxito",
                 icon: "success",
                 confirmButtonText: "Aceptar",
-              }).then(()=> navigate('/'));
+              }).then(()=> navigate('/analizeFront/'));
             
 
             // Reinicia los datos del formulario

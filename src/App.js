@@ -23,18 +23,18 @@ function App() {
       <Router>
         <Appbar />
           <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/proyectos" element={<Proyect />} />
-            <Route path="/proyectosEquipos" element={<FormAsignProyecTeam />} />
-            <Route path="/details" element={<Tasks />} />
-            <Route path="/crearTarea" element={<FormTask />} />
-            <Route path="/crearUsuario" element={<FormUser />} />
-            <Route path="/usuarios" element={<User />} />
-            <Route path="/equipos" element={<Teams />} />
-            <Route path="/crearEquipos" element={<FormTeams />} />
-            <Route path="/asignarEquipos" element={<FormTeamAsign />} />
-            <Route path="/crearProyectos" element={<FormProyects />} />
-            <Route path="/asignarTarea" element={<AlertAsign />} />
+            <Route path="/analizeFront/" element={<Home />} />
+            <Route path="/analizeFront/proyectos" element={<Proyect />} />
+            <Route path="/analizeFront/proyectosEquipos" element={<FormAsignProyecTeam />} />
+            <Route path="/analizeFront/details" element={<Tasks />} />
+            <Route path="/analizeFront/crearTarea" element={<FormTask />} />
+            <Route path="/analizeFront/crearUsuario" element={<FormUser />} />
+            <Route path="/analizeFront/usuarios" element={<User />} />
+            <Route path="/analizeFrontR/equipos" element={<Teams />} />
+            <Route path="/analizeFront/crearEquipos" element={<FormTeams />} />
+            <Route path="/analizeFront/asignarEquipos" element={<FormTeamAsign />} />
+            <Route path="/analizeFront/crearProyectos" element={<FormProyects />} />
+            <Route path="/analizeFront/asignarTarea" element={<AlertAsign />} />
           </Routes>
       </Router>
     </Provider>

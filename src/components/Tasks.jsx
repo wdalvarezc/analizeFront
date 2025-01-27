@@ -19,7 +19,7 @@ export default function Tasks() {
     const [selectedCard, setSelectedCard] = React.useState(0);
     if (loading) return <p>Loading...</p>;
     if (error) return <p>Error: {error}</p>;
-
+    console.log(users);
     async function fetchRunTask(id, estado) {
         const res = await axios.put(`https://backinlaze-0bc208007092.herokuapp.com/api/tareas`, { id, estado })
         return res;
@@ -68,7 +68,7 @@ export default function Tasks() {
                                     {`Descripcion: ${card.descripcion}`}
                                 </Typography>
                                 <Typography gutterBottom sx={{ color: 'text.secondary', fontSize: 14 }}>
-                                    {`${users && card.UserId ? users.filter((e) => e.id === card.UserId)[0]['nombre'] : ''}`}
+                                    {`${users?.length > 0 && card?.UserId ? users.filter((e) => e.id === card.UserId)[0]['nombre'] : ''}`}
                                 </Typography>
                             </CardContent>
                             <CardActions sx={{ flexDirection: "column" }}>
@@ -79,7 +79,7 @@ export default function Tasks() {
                                         fullWidth
                                         onClick={() => {
                                             dispatch(fetchActiveTask(card))
-                                            navigate('/asignarTarea')
+                                            navigate('/analizeFront/asignarTarea')
                                         }}>
                                         Asignar Usuario
                                     </Button>
@@ -123,7 +123,7 @@ export default function Tasks() {
             ))}
 
 
-            <Button variant="contained" endIcon={<SendIcon />} onClick={() => navigate('/crearTarea')} />
+            <Button variant="contained" endIcon={<SendIcon />} onClick={() => navigate('/analizeFront/crearTarea')} />
         </Box>
     );
 }

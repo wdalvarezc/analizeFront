@@ -49,7 +49,7 @@ export default function FormTeamAsign() {
                         text: "Formulario enviado con éxito",
                         icon: "success",
                         confirmButtonText: "Aceptar",
-                    }).then(() => navigate('/'));
+                    }).then(() => navigate('/analizeFront/'));
 
                 });
 

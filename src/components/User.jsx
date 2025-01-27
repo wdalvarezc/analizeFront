@@ -48,7 +48,7 @@ export default function User() {
                         onClick={() => {
                             setSelectedCard(index)
                             dispatch(fetchProyect(card.id))
-                            navigate('/details')
+                            navigate('/analizeFront/details')
                         }}
                         data-active={selectedCard === index ? '' : undefined}
                         sx={{
@@ -73,7 +73,7 @@ export default function User() {
                 </Card>
             ))}
 
-            <Button variant="contained" endIcon={<SendIcon />} onClick={() => navigate('/crearUsuario')} />
+            <Button variant="contained" endIcon={<SendIcon />} onClick={() => navigate('/analizeFront/crearUsuario')} />
         </Box>
 
     );

@@ -83,7 +83,7 @@ export default function Proyect() {
                                     fullWidth
                                     onClick={() => {
                                         dispatch(fetchProyect(card.id))
-                                        navigate('/details')
+                                        navigate('/analizeFront/details')
                                     }}>
                                     Crear Tareas
                                 </Button>
@@ -93,7 +93,7 @@ export default function Proyect() {
                                     color="success"
                                     size="small"
                                     onClick={() => {
-                                        navigate('/proyectosEquipos')
+                                        navigate('/analizeFront/proyectosEquipos')
                                     }}>
                                     Asignar Equipo
                                 </Button>
@@ -104,7 +104,7 @@ export default function Proyect() {
                 </Card>
             ))}
 
-            <Button variant="contained" endIcon={<SendIcon />} onClick={() => navigate('/crearProyectos')} />
+            <Button variant="contained" endIcon={<SendIcon />} onClick={() => navigate('/analizeFront/crearProyectos')} />
         </Box>
 
     );

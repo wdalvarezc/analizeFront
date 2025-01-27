@@ -59,7 +59,7 @@ export default function Teams() {
                                 </Typography>
                             </CardContent>
                             <CardActions>
-                                <Button size="small" onClick={()=> navigate('/asignarEquipos')}>Agregar Usuarios</Button>
+                                <Button size="small" onClick={()=> navigate('/analizeFront/asignarEquipos')}>Agregar Usuarios</Button>
                             </CardActions>
 
                         </CardContent>
@@ -68,7 +68,7 @@ export default function Teams() {
             ))}
 
 
-            <Button variant="contained" endIcon={<SendIcon />} onClick={() => navigate('/crearEquipos')} />
+            <Button variant="contained" endIcon={<SendIcon />} onClick={() => navigate('/analizeFront/crearEquipos')} />
         </Box>
     );
 }
