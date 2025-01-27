@@ -7,7 +7,7 @@ import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import { CardActionArea, CardActions, Button } from '@mui/material';
 import SendIcon from '@mui/icons-material/Add';
-import { fetchActiveTask, fetchProyect } from "../redux/actions";
+import { fetchActiveTask, fetchProyect, fetchTask } from "../redux/actions";
 import axios from "axios";
 
 
@@ -20,9 +20,13 @@ export default function Tasks() {
     if (loading) return <p>Loading...</p>;
     if (error) return <p>Error: {error}</p>;
     console.log(users);
-    async function fetchRunTask(id, estado) {
-        const res = await axios.put(`https://backinlaze-0bc208007092.herokuapp.com/api/tareas`, { id, estado })
-        return res;
+    async function fetchRunTask(id, estado,proyect) {
+        await axios.put(`https://backinlaze-0bc208007092.herokuapp.com/api/tareas`, { id, estado })
+            .then(()=>{
+                dispatch(fetchTask());
+                dispatch(fetchProyect(proyect));
+            }).catch()
+        return
     };
 
 
@@ -90,8 +94,8 @@ export default function Tasks() {
                                     color="secondary"
                                     variant="outlined"
                                     fullWidth
-                                    onClick={() => {
-                                        fetchRunTask(card.id, 'Por hacer').then(dispatch(fetchProyect(card.ProyectId)))
+                                    onClick={async () => {
+                                        await fetchRunTask(card.id, 'Por hacer',card.ProyectId)
                                     }}>
                                     Por Hacer
                                 </Button>
@@ -101,7 +105,7 @@ export default function Tasks() {
                                     color="success"
                                     size="small"
                                     onClick={() => {
-                                        fetchRunTask(card.id, 'En Progreso').then(dispatch(fetchProyect(card.ProyectId)))
+                                        fetchRunTask(card.id, 'En Progreso',card.ProyectId)
                                     }}>
                                     En Progreso
                                 </Button>
@@ -111,7 +115,7 @@ export default function Tasks() {
                                     variant="outlined"
                                     color="error"
                                     onClick={() => {
-                                        fetchRunTask(card.id, 'Terminada').then(dispatch(fetchProyect(card.ProyectId)) )
+                                        fetchRunTask(card.id, 'Terminada',card.ProyectId)
                                     }}>
                                     Terminada
                                 </Button>
