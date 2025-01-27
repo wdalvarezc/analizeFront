@@ -85,7 +85,7 @@ export default function Proyect() {
                                         dispatch(fetchProyect(card.id))
                                         navigate('/analizeFront/details')
                                     }}>
-                                    Crear Tareas
+                                    Tareas
                                 </Button>
                                 <Button
                                     fullWidth

@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchData, fetchProyect, fetchTeams, fetchUsers } from "../redux/actions";
+import { fetchData, fetchTeams, fetchUsers } from "../redux/actions";
 import { useNavigate } from "react-router-dom";
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
@@ -18,7 +18,7 @@ export default function User() {
     const [selectedCard, setSelectedCard] = React.useState(0);
 
     useEffect(() => {
-        dispatch(fetchData()); 
+        dispatch(fetchData());
         dispatch(fetchTeams());
         dispatch(fetchUsers());
     }, [dispatch]);
@@ -47,8 +47,6 @@ export default function User() {
                     <CardActionArea
                         onClick={() => {
                             setSelectedCard(index)
-                            dispatch(fetchProyect(card.id))
-                            navigate('/analizeFront/details')
                         }}
                         data-active={selectedCard === index ? '' : undefined}
                         sx={{
