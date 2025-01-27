@@ -1,27 +1,29 @@
 import * as React from 'react';
-import { useSelector, useDispatch } from "react-redux";
-import { fetchData, fetchUsers } from "../redux/actions";
+import { useDispatch } from "react-redux";
+import { fetchData } from "../redux/actions";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Swal from "sweetalert2";
-import { Button, Autocomplete, Typography } from '@mui/material';
+import { Button, FormControl, InputLabel, Select, MenuItem, Typography } from '@mui/material';
 
-export default function FormTeams() {
+export default function FormUser() {
 
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const { users } = useSelector((state) => state);
+    const admin = [
+        { value: true, valor:'SI' },
+        { value: false, valor: 'NO' },
+    ]
+
 
     const [formData, setFormData] = React.useState({
-        users: [],
+        admin: false, // Campo para la fecha 
     });
-    console.log(formData)
 
     React.useEffect(() => {
         dispatch(fetchData()); // Despachar la acción para obtener los datos
-        dispatch(fetchUsers()); // Despachar la acción para obtener los datos
     }, [dispatch]);
 
 
@@ -31,29 +33,24 @@ export default function FormTeams() {
         setFormData({ ...formData, [name]: value });
     };
 
-    const handleSkillsChange = (event, value) => {
-        setFormData({ ...formData, users: value });
-      };
 
     // Manejar envío del formulario
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const {users,...data}= formData
         try {
-            const response = await axios.post("https://backinlaze-0bc208007092.herokuapp.com/api/Equipos", data);
-
+            const response = await axios.post("https://backinlaze-0bc208007092.herokuapp.com/api/usuarios", formData);
             if (response.status !== 200) {
+                Swal.fire({
+                    title: "Error",
+                    text: "Hubo un error",
+                    icon: "error",
+                    confirmButtonText: "Aceptar",
+                  });
                 throw new Error(`Error al enviar los datos: ${response.statusText}`);
             }
-
-            console.log("Respuesta de la API:", response.data);
-            const formData2 = {TeamId:response.data.id, users}
-            const response2 = await axios.post("https://backinlaze-0bc208007092.herokuapp.com/api/usuarios/addTeam", formData2);
-            console.log(response2)
-
             Swal.fire({
                 title: "Éxito",
-                text: "Formulario enviado con éxito",
+                text: "Usuario Creado",
                 icon: "success",
                 confirmButtonText: "Aceptar",
             }).then(() => navigate('/'));
@@ -61,12 +58,18 @@ export default function FormTeams() {
 
             // Reinicia los datos del formulario
             setFormData({
-                users: [],
-                nombre: '',
+                nombre: null,
+                email: '',
+                admin: ''
             });
         } catch (error) {
             console.error("Error al enviar los datos:", error);
-            alert("Hubo un error al enviar el formulario. Inténtalo nuevamente.");
+            Swal.fire({
+                title: "Error",
+                text: "Hubo un error. Inténtalo nuevamente.",
+                icon: "error",
+                confirmButtonText: "Aceptar",
+              });
         }
 
     };
@@ -79,36 +82,43 @@ export default function FormTeams() {
             onSubmit={handleSubmit}
         >
             <Typography variant="h5" component="h1" align="center" gutterBottom>
-                Nuevo Equipo
+                Nuevo Usuario
             </Typography>
             <div>
                 <TextField
                     required
-                    id="nombre"
+                    id="Nombre"
                     name="nombre"
-                    label="Nombre del Equipo"
+                    label="Nombre"
                     value={formData.nombre}
                     fullWidth
                     onChange={handleChange}
-                    sx={{ paddingTop: '5px', paddingBottom:'10px' }}
+                    sx={{ paddingTop: '5px' }}
                 />
-                <Autocomplete
-                    multiple
-                    id="tags-outlined"
-                    name="users"
-                    options={users}
-                    onChange={handleSkillsChange}
-                    getOptionLabel={(option) => option.nombre}
-                    filterSelectedOptions
-                    renderInput={(params) => (
-                        <TextField
-                            {...params}
-                            label="Integrantes"
-                        />
-                    )}
+                <TextField
+                    required
+                    id="Email"
+                    name="email"
+                    label="Email"
+                    value={formData.email}
+                    fullWidth
+                    onChange={handleChange}
+                    sx={{ paddingTop: '5px' }}
                 />
 
-
+                <FormControl fullWidth sx={{ paddingTop: '10px' }}>
+                    <InputLabel sx={{ paddingTop: '10px' }}>Administrador</InputLabel>
+                    <Select
+                        labelId="admin"
+                        id="admin"
+                        name="admin"
+                        onChange={handleChange}
+                    >
+                        {admin.map((e) => {
+                            return <MenuItem value={e.value}>{`${e.valor}`}</MenuItem>
+                        })}
+                    </Select>
+                </FormControl>
                 <Button
                     type="submit"
                     variant="contained"

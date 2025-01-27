@@ -1,5 +1,5 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
@@ -7,16 +7,21 @@ import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import { CardActionArea, CardActions, Button } from '@mui/material';
 import SendIcon from '@mui/icons-material/Add';
+import { fetchTeams } from "../redux/actions";
 
 
 export default function Teams() {
 
     const navigate = useNavigate();
-    // const dispatch = useDispatch();
+    const dispatch = useDispatch();
+    React.useEffect(()=>{
+        dispatch(fetchTeams())
+    },[dispatch])
     const { teams, loading, error } = useSelector((state) => state); // Obtener datos del store
     const [selectedCard, setSelectedCard] = React.useState(0);
     if (loading) return <p>Loading...</p>;
     if (error) return <p>Error: {error}</p>;
+    console.log(teams)
 
 
     return (
@@ -31,7 +36,6 @@ export default function Teams() {
             }}
         >
             {teams.map((card, index) => (
-
                 <Card>
                     <CardActionArea
                         onClick={() => {
@@ -51,18 +55,11 @@ export default function Teams() {
                         <CardContent sx={{ height: '100%' }}>
                             <CardContent>
                                 <Typography gutterBottom sx={{ color: 'text.secondary', fontSize: 14 }}>
-                                    {`Límite:  ${card.fecha_limite}`}
-                                </Typography>
-                                <Typography variant="h5" component="div">
-                                    {card.titulo}
-                                </Typography>
-                                <Typography sx={{ color: 'text.secondary', mb: 1.5 }}> {`${card.estado}`}</Typography>
-                                <Typography variant="body2">
-                                    {`Descripcion: ${card.descripcion}`}
+                                    {` ${card.nombre}`}
                                 </Typography>
                             </CardContent>
                             <CardActions>
-                                <Button size="small">Asignar</Button>
+                                <Button size="small" onClick={()=> navigate('/asignarEquipos')}>Agregar Usuarios</Button>
                             </CardActions>
 
                         </CardContent>
@@ -71,7 +68,7 @@ export default function Teams() {
             ))}
 
 
-            <Button variant="contained" endIcon={<SendIcon />} onClick={() => navigate('/crearEquipo')} />
+            <Button variant="contained" endIcon={<SendIcon />} onClick={() => navigate('/crearEquipos')} />
         </Box>
     );
 }

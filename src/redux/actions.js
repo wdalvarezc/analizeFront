@@ -42,7 +42,7 @@ export const fetchData = () => {
     dispatch(fetchDataStart()); // Despachamos la acción de inicio
 
     axios
-      .get("http://localhost:3001/api/proyectos") // Usamos una API de ejemplo
+      .get("https://backinlaze-0bc208007092.herokuapp.com/api/proyectos") // Usamos una API de ejemplo
       .then((response) => {
         dispatch(fetchDataSuccess(response.data)); // Despachamos el éxito
       })
@@ -57,7 +57,7 @@ export const fetchTask = () => {
     dispatch(fetchDataStart()); // Despachamos la acción de inicio
 
     axios
-      .get("http://localhost:3001/api/tareas") // Usamos una API de ejemplo
+      .get("https://backinlaze-0bc208007092.herokuapp.com/api/tareas") // Usamos una API de ejemplo
       .then((response) => {
         dispatch(fetchDataSuccess(response.data)); // Despachamos el éxito
       })
@@ -74,7 +74,7 @@ export const fetchProyect = (idproyect) => {
     dispatch(fetchDataStart()); // Despachamos la acción de inicio
 
     axios
-      .get(`http://localhost:3001/api/proyectos/${idproyect}`) // Usamos una API de ejemplo
+      .get(`https://backinlaze-0bc208007092.herokuapp.com/api/proyectos/${idproyect}`) // Usamos una API de ejemplo
       .then((response) => {
         console.log(response)
         dispatch(fetchDataTask(response.data.Tasks)); // Despachamos el éxito
@@ -90,10 +90,10 @@ export const fetchTeams = () => {
     dispatch(fetchDataStart()); // Despachamos la acción de inicio
 
     axios
-      .get(`http://localhost:3001/api/equipos`) // Usamos una API de ejemplo
+      .get(`https://backinlaze-0bc208007092.herokuapp.com/api/equipos`) // Usamos una API de ejemplo
       .then((response) => {
         console.log(response)
-        dispatch(fetchDataTeams(response.data.Tasks)); // Despachamos el éxito
+        dispatch(fetchDataTeams(response.data)); // Despachamos el éxito
       })
       .catch((error) => {
         dispatch(fetchDataError(error.message)); // Despachamos el error
@@ -107,7 +107,7 @@ export const fetchUsers = () => {
     dispatch(fetchDataStart()); // Despachamos la acción de inicio
 
     axios
-      .get(`http://localhost:3001/api/usuarios`) // Usamos una API de ejemplo
+      .get(`https://backinlaze-0bc208007092.herokuapp.com/api/usuarios`) // Usamos una API de ejemplo
       .then((response) => {
         dispatch(fetchDataUsers(response.data)); // Despachamos el éxito
       })

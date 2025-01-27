@@ -6,8 +6,7 @@ import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
-import CardActionArea from '@mui/material/CardActionArea';
-import { Button } from '@mui/material';
+import { CardActionArea, CardActions, Button } from '@mui/material';
 import SendIcon from '@mui/icons-material/Add';
 
 
@@ -19,7 +18,7 @@ export default function Proyect() {
     const dispatch = useDispatch();
     const { proyects, loading, error } = useSelector((state) => state); // Obtener datos del store
     const [selectedCard, setSelectedCard] = React.useState(0);
-
+    console.log(proyects)
     useEffect(() => {
         dispatch(fetchData()); // Despachar la acción para obtener los datos
         dispatch(fetchTeams()); // Despachar la acción para obtener los datos; // Despachar la acción para obtener los datos // Despachar la acción para obtener los datos
@@ -49,8 +48,6 @@ export default function Proyect() {
                     <CardActionArea
                         onClick={() => {
                             setSelectedCard(index)
-                            dispatch(fetchProyect(card.id))
-                            navigate('/details')
                         }}
                         data-active={selectedCard === index ? '' : undefined}
                         sx={{
@@ -67,7 +64,42 @@ export default function Proyect() {
                             <Typography variant="h5" component="div">
                                 {card.nombre}
                             </Typography>
+                            {
+                                card?.Teams.length > 0 ?
+                                    card.Teams.map((e) => {
+                                        return <Typography variant="h9" component="div">
+                                            {`* ${e.nombre}`}
+                                        </Typography>
+                                    })
+
+                                    : ''
+                            }
+
+                            <CardActions sx={{ flexDirection: "column" }}>
+                                <Button
+                                    size="small"
+                                    color="secondary"
+                                    variant="contained"
+                                    fullWidth
+                                    onClick={() => {
+                                        dispatch(fetchProyect(card.id))
+                                        navigate('/details')
+                                    }}>
+                                    Crear Tareas
+                                </Button>
+                                <Button
+                                    fullWidth
+                                    variant="contained"
+                                    color="success"
+                                    size="small"
+                                    onClick={() => {
+                                        navigate('/proyectosEquipos')
+                                    }}>
+                                    Asignar Equipo
+                                </Button>
+                            </CardActions>
                         </CardContent>
+
                     </CardActionArea>
                 </Card>
             ))}

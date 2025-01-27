@@ -38,7 +38,7 @@ export default function AlertAsign() {
         e.preventDefault();
         const data = { id: taskActive.id, UserId: formData.user.id }
         try {
-            const response = await axios.put("http://localhost:3001/api/tareas", data);
+            const response = await axios.put("https://backinlaze-0bc208007092.herokuapp.com/api/tareas", data);
 
             if (response.status !== 200) {
                 throw new Error(`Error al enviar los datos: ${response.statusText}`);

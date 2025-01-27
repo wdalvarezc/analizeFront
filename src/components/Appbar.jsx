@@ -1,11 +1,10 @@
 import * as React from 'react';
 import { styled, alpha } from '@mui/material/styles';
-import { Box, AppBar, Toolbar, IconButton, InputBase, Badge, MenuItem, Menu } from '@mui/material';
+import { Box, AppBar, Toolbar, IconButton, InputBase, Badge, MenuItem, Menu, Button } from '@mui/material';
 import { MapOutlined } from '@mui/icons-material';
 import SearchIcon from '@mui/icons-material/Search';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import MailIcon from '@mui/icons-material/Mail';
-import AddBox from '@mui/icons-material/AddBox';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import MoreIcon from '@mui/icons-material/MoreVert';
 import { Link } from 'react-router-dom';
@@ -178,8 +177,7 @@ export default function Appbar() {
                     <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
                         <IconButton size="large" aria-label="show 4 new mails" color="inherit">
                             <Link to="/">
-
-                                <AddBox />
+                                <Button variant='contained' color='inherit'>INICIO</Button>
                             </Link>
                         </IconButton>
                         <IconButton

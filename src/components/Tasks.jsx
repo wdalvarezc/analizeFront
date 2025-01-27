@@ -21,7 +21,7 @@ export default function Tasks() {
     if (error) return <p>Error: {error}</p>;
 
     async function fetchRunTask(id, estado) {
-        const res = await axios.put(`http://localhost:3001/api/tareas`, { id, estado })
+        const res = await axios.put(`https://backinlaze-0bc208007092.herokuapp.com/api/tareas`, { id, estado })
         return res;
     };
 

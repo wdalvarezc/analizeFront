@@ -29,7 +29,7 @@ export default function FormProyects() {
         e.preventDefault();
         const {users,...data}= formData
         try {
-            const response = await axios.post("http://localhost:3001/api/proyectos", data);
+            const response = await axios.post("https://backinlaze-0bc208007092.herokuapp.com/api/proyectos", data);
 
             if (response.status !== 200) {
                 throw new Error(`Error al enviar los datos: ${response.statusText}`);
@@ -63,14 +63,14 @@ export default function FormProyects() {
             onSubmit={handleSubmit}
         >
             <Typography variant="h5" component="h1" align="center" gutterBottom>
-                Nuevo Equipo
+                Nuevo Proyecto
             </Typography>
             <div>
                 <TextField
                     required
                     id="nombre"
                     name="nombre"
-                    label="Nombre del Equipo"
+                    label="Nombre del Proyecto"
                     value={formData.nombre}
                     fullWidth
                     onChange={handleChange}

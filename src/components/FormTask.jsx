@@ -47,7 +47,7 @@ export default function FormTask() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post("http://localhost:3001/api/tareas", formData);
+            const response = await axios.post("https://backinlaze-0bc208007092.herokuapp.com/api/tareas", formData);
 
             if (response.status !== 200) {
                 throw new Error(`Error al enviar los datos: ${response.statusText}`);
