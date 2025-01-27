@@ -30,7 +30,7 @@ function App() {
             <Route path="/analizeFront/crearTarea" element={<FormTask />} />
             <Route path="/analizeFront/crearUsuario" element={<FormUser />} />
             <Route path="/analizeFront/usuarios" element={<User />} />
-            <Route path="/analizeFrontR/equipos" element={<Teams />} />
+            <Route path="/analizeFront/equipos" element={<Teams />} />
             <Route path="/analizeFront/crearEquipos" element={<FormTeams />} />
             <Route path="/analizeFront/asignarEquipos" element={<FormTeamAsign />} />
             <Route path="/analizeFront/crearProyectos" element={<FormProyects />} />
