@@ -176,7 +176,7 @@ export default function Appbar() {
                     <Box sx={{ flexGrow: 1 }} />
                     <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
                         <IconButton size="large" aria-label="show 4 new mails" color="inherit">
-                            <Link to="/analizeFront/">
+                            <Link to="/analizeFront">
                                 <Button variant='contained' color='inherit'>INICIO</Button>
                             </Link>
                         </IconButton>

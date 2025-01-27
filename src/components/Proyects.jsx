@@ -65,7 +65,7 @@ export default function Proyect() {
                                 {card.nombre}
                             </Typography>
                             {
-                                card?.Teams.length > 0 ?
+                                card?.Teams?.length > 0 ?
                                     card.Teams.map((e) => {
                                         return <Typography variant="h9" component="div">
                                             {`* ${e.nombre}`}
