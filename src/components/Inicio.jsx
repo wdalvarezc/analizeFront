@@ -5,17 +5,18 @@ import { Button } from '@mui/material';
 import { useDispatch } from "react-redux";
 import SendIcon from '@mui/icons-material/Add';
 import { fetchData, fetchTask, fetchTeams, fetchUsers } from "../redux/actions";
+import { Link } from "react-router-dom";
 
 
 export default function Inicio() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    React.useEffect(()=>{
+    React.useEffect(() => {
         dispatch(fetchData())
         dispatch(fetchTask())
         dispatch(fetchTeams())
         dispatch(fetchUsers())
-    },[dispatch])
+    }, [dispatch])
 
     return (
 
@@ -29,11 +30,10 @@ export default function Inicio() {
                 padding: '20px'
             }}
         >
-
-            <Button variant="contained" color='error' endIcon={<SendIcon />} onClick={() => navigate('/analizeFront/proyectos')}>Proyectos</Button>
-            <Button variant="contained" color='warning' endIcon={<SendIcon />} onClick={() => navigate('/analizeFront/crearTarea')} >Tareas</Button>
-            <Button variant="contained" color='info' endIcon={<SendIcon />} onClick={() => navigate('/analizeFront/usuarios')}>Usuarios</Button>
-            <Button variant="contained" color='success' endIcon={<SendIcon />} onClick={() => navigate('/analizeFront/equipos')}>Equipos</Button>
+            <Button variant="contained" color='error' onClick={() => navigate('/analizeFront/proyectos')} >Proyectos</Button>
+            <Button variant="contained" color='warning' onClick={() => navigate('/analizeFront/crearTarea')} >Tareas</Button>
+            <Button variant="contained" color='info' onClick={() => navigate('/analizeFront/usuarios')}>Usuarios</Button>
+            <Button variant="contained" color='success' lonClick={() => navigate('/analizeFront/equipos')}>Equipos</Button>
 
         </Box>
 
